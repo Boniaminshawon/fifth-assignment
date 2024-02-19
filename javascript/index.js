@@ -1,38 +1,42 @@
+
 const seats = document.getElementsByClassName('seat');
 const applyBtn = document.getElementById('apply-btn');
+
+function setInnerText(id, value) {
+    const element = document.getElementById(id);
+    element.innerText = value;
+}
 let globalCounter = 0;
 let selectedSeat = 0;
 let leftSit = 40;
 let total = 0;
 let grandTotal = 0;
 
-
-
 for (const seat of seats) {
-    const seatClick = seat.addEventListener('click', function (event) {
+    seat.addEventListener('click', function (event) {
+        
         globalCounter++;
         if (globalCounter > 4) {
             alert('Opps!!! You did fill your specified quota.');
             return;
         }
 
+         // coupon field
+         document.getElementById('input-field').classList.remove('hidden');
 
-
+         if (globalCounter === 4) {
+             applyBtn.removeAttribute('disabled');
+ 
+         }
 
         const phone = document.getElementById('phone');
-
         phone.addEventListener('keyup', function () {
             const phoneNumber = phone.value;
-
             if (globalCounter > 0 && phoneNumber) {
                 nextBtn.removeAttribute('disabled');
             }
-
         })
 
-
-
-        // console.log(pressed);
         // add and remove bg-color , pointer-event;
         seat.classList.add('pointer-events-none');
         seat.classList.remove('bg-gray-200');
@@ -69,8 +73,6 @@ for (const seat of seats) {
         div.classList.add('flex', 'justify-between', 'mt-5');
         selectedContainer.appendChild(div);
 
-        
-
 
         //  calculate the total and grand total price;
 
@@ -80,109 +82,63 @@ for (const seat of seats) {
         grandTotal = total;
         setInnerText('grand-total', grandTotal);
 
-        // coupon field
-        const inputField = document.getElementById('input-field').classList.remove('hidden');
-
-
-        
-        if (globalCounter === 4) {
-            applyBtn.removeAttribute('disabled');
-
-        }
-
-
-      
-
-
-
-
-
+       
     })
-
-
 }
 
 applyBtn.addEventListener('click', function () {
     const couponCode = document.getElementById('coupon').value;
+    document.getElementById('input-field').classList.add('hidden');
+
 
     if (couponCode === 'NEW15') {
         const discount = total * 15 / 100;
         grandTotal = total - discount;
         setInnerText('grand-total', grandTotal);
-        const inputField = document.getElementById('input-field').classList.add('hidden');
-
 
         const selectedDiscountContainer = document.getElementById('discount-container');
         const p1 = document.createElement('p');
-        p1.innerText = 'Discount';
+        p1.innerText = 'Discount Price';
 
         const p2 = document.createElement('p');
-        p2.innerText= discount;
-      
+        p2.innerText = 'BDT'+'  '+ discount;
+
         const div = document.createElement('div');
         div.appendChild(p1);
         div.appendChild(p2);
         selectedDiscountContainer.appendChild(div);
-        div.classList.add('flex', 'justify-between', 'mt-5');
+        div.classList.add('flex', 'justify-between', 'mt-5', 'text-black' , 'font-medium');
 
     }
     else if (couponCode === 'Couple 20') {
         const discount = total * 20 / 100;
         grandTotal = total - discount;
         setInnerText('grand-total', grandTotal);
-        const inputField = document.getElementById('input-field').classList.add('hidden');
-
+        
         const selectedDiscountContainer = document.getElementById('discount-container');
         const p1 = document.createElement('p');
-        p1.innerText = 'Discount';
-      
+        p1.innerText = 'Discount Price';
+
         const p2 = document.createElement('p');
-        p2.innerText= discount;
+        p2.innerText = 'BDT' +'  '+ discount;
 
         const div = document.createElement('div');
         div.appendChild(p1);
         div.appendChild(p2);
         selectedDiscountContainer.appendChild(div);
-        div.classList.add('flex', 'justify-between', 'mt-5');
+        div.classList.add('flex', 'justify-between', 'mt-5' ,'text-black' , 'font-medium');
 
     } else if (couponCode !== 'NEW15' || couponCode !== 'Couple 20') {
-        alert('Please provide the right coupon code. I suggest to you copy and paste at input the coupon code.');
+        alert('Please provide the right coupon code. I suggest to you copy and paste the coupon code at the input field.');
     }
-   
-   
-
-  
-
-
 
 })
 
 const nextBtn = document.getElementById('next-btn');
 nextBtn.addEventListener('click', function () {
-
-
-    console.log(document.getElementById('header').classList.add('hidden'));
-    console.log(document.getElementById('main').classList.add('hidden'));
-    console.log(document.getElementById('footer').classList.add('hidden'));
-    console.log(document.getElementById('modal').classList.remove('hidden'))
-
+    document.getElementById('modal').classList.remove('hidden')
+    my_modal_4.showModal();
 })
-
-
-const continueBtn = document.getElementById('continue-btn');
-continueBtn.addEventListener('click', function () {
-    console.log(document.getElementById('modal').classList.add('hidden'));
-    console.log(document.getElementById('header').classList.remove('hidden'));
-    console.log(document.getElementById('main').classList.remove('hidden'));
-    console.log(document.getElementById('footer').classList.remove('hidden'));
-
-})
-
-
-function setInnerText(id, value) {
-    const element = document.getElementById(id);
-    element.innerText = value;
-}
 
 
 
