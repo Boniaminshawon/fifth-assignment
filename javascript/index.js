@@ -146,10 +146,3 @@ document.getElementById('continue-btn').addEventListener('click', function () {
 
     window.location.reload();
 })
-
-// not necessary
-
-// if (globalCounter > 0 ) {
-//     nextBtn.removeAttribute('disabled');
-// }
-//   document.getElementById('input-field').classList.remove('hidden');
