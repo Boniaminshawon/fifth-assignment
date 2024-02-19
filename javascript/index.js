@@ -15,15 +15,15 @@ let grandTotal = 0;
 for (const seat of seats) {
     seat.addEventListener('click', function (event) {
 
+
+        document.getElementById('input-field').classList.remove('hidden');
         globalCounter++;
         if (globalCounter > 4) {
             alert('Opps!!! You did fill your specified quota.');
             return;
         }
 
-        // coupon field
-        document.getElementById('input-field').classList.remove('hidden');
-
+        
         if (globalCounter === 4) {
             applyBtn.removeAttribute('disabled');
 
@@ -88,13 +88,12 @@ for (const seat of seats) {
 
 applyBtn.addEventListener('click', function () {
     const couponCode = document.getElementById('coupon').value;
-    document.getElementById('input-field').classList.add('hidden');
-
-
+    
     if (couponCode === 'NEW15') {
         const discount = total * 15 / 100;
         grandTotal = total - discount;
         setInnerText('grand-total', grandTotal);
+        document.getElementById('input-field').classList.add('hidden');
 
         const selectedDiscountContainer = document.getElementById('discount-container');
         const p1 = document.createElement('p');
@@ -114,6 +113,8 @@ applyBtn.addEventListener('click', function () {
         const discount = total * 20 / 100;
         grandTotal = total - discount;
         setInnerText('grand-total', grandTotal);
+        document.getElementById('input-field').classList.add('hidden');
+      
 
         const selectedDiscountContainer = document.getElementById('discount-container');
         const p1 = document.createElement('p');
@@ -151,3 +152,4 @@ document.getElementById('continue-btn').addEventListener('click', function () {
 // if (globalCounter > 0 ) {
 //     nextBtn.removeAttribute('disabled');
 // }
+//   document.getElementById('input-field').classList.remove('hidden');
