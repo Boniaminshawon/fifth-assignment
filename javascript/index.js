@@ -14,20 +14,20 @@ let grandTotal = 0;
 
 for (const seat of seats) {
     seat.addEventListener('click', function (event) {
-        
+
         globalCounter++;
         if (globalCounter > 4) {
             alert('Opps!!! You did fill your specified quota.');
             return;
         }
 
-         // coupon field
-         document.getElementById('input-field').classList.remove('hidden');
+        // coupon field
+        document.getElementById('input-field').classList.remove('hidden');
 
-         if (globalCounter === 4) {
-             applyBtn.removeAttribute('disabled');
- 
-         }
+        if (globalCounter === 4) {
+            applyBtn.removeAttribute('disabled');
+
+        }
 
         const phone = document.getElementById('phone');
         phone.addEventListener('keyup', function () {
@@ -82,7 +82,7 @@ for (const seat of seats) {
         grandTotal = total;
         setInnerText('grand-total', grandTotal);
 
-       
+
     })
 }
 
@@ -101,32 +101,32 @@ applyBtn.addEventListener('click', function () {
         p1.innerText = 'Discount Price';
 
         const p2 = document.createElement('p');
-        p2.innerText = 'BDT'+'  '+ discount;
+        p2.innerText = 'BDT' + '  ' + discount;
 
         const div = document.createElement('div');
         div.appendChild(p1);
         div.appendChild(p2);
         selectedDiscountContainer.appendChild(div);
-        div.classList.add('flex', 'justify-between', 'mt-5', 'text-black' , 'font-medium');
+        div.classList.add('flex', 'justify-between', 'mt-5', 'text-black', 'font-medium');
 
     }
     else if (couponCode === 'Couple 20') {
         const discount = total * 20 / 100;
         grandTotal = total - discount;
         setInnerText('grand-total', grandTotal);
-        
+
         const selectedDiscountContainer = document.getElementById('discount-container');
         const p1 = document.createElement('p');
         p1.innerText = 'Discount Price';
 
         const p2 = document.createElement('p');
-        p2.innerText = 'BDT' +'  '+ discount;
+        p2.innerText = 'BDT' + '  ' + discount;
 
         const div = document.createElement('div');
         div.appendChild(p1);
         div.appendChild(p2);
         selectedDiscountContainer.appendChild(div);
-        div.classList.add('flex', 'justify-between', 'mt-5' ,'text-black' , 'font-medium');
+        div.classList.add('flex', 'justify-between', 'mt-5', 'text-black', 'font-medium');
 
     } else if (couponCode !== 'NEW15' || couponCode !== 'Couple 20') {
         alert('Please provide the right coupon code. I suggest to you copy and paste the coupon code at the input field.');
@@ -138,9 +138,13 @@ const nextBtn = document.getElementById('next-btn');
 nextBtn.addEventListener('click', function () {
     document.getElementById('modal').classList.remove('hidden')
     my_modal_4.showModal();
+
 })
+// continue btn in modal
+document.getElementById('continue-btn').addEventListener('click', function () {
 
-
+    window.location.reload();
+})
 
 // not necessary
 
